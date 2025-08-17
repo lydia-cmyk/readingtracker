@@ -115,7 +115,7 @@ export default function StickerStudyTracker() {
 
   // 총 회독 수 안전 변경(1~50, 줄이면 초과 스티커 잘라내기)
   const setTotalSafe = (t) => {
-    const next = clamp(parseInt(t, 10) || 1, 1, 50);
+    const next = clamp(parseInt(t, 10) || 1, 1, 100);
     setBoards((prev) => prev.map((b) => (
       b.id === board.id ? { ...b, total: next, sequence: (b.sequence || []).slice(0, next) } : b
     )));
@@ -195,7 +195,7 @@ export default function StickerStudyTracker() {
                   <label className="text-sm text-slate-600">목표 회독</label>
                   <div className="mt-1 flex items-center gap-2">
                     <button onClick={() => setTotalSafe(total-1)} className="h-12 w-12 rounded-2xl border border-slate-200 bg-white text-xl" aria-label="감소">−</button>
-                    <input type="number" min={1} max={50} value={total} onChange={(e)=>setTotalSafe(e.target.value)} className="h-12 w-20 rounded-2xl border border-slate-200 bg-white text-center text-xl font-bold" />
+                    <input type="number" min={1} max={100} value={total} onChange={(e)=>setTotalSafe(e.target.value)} className="h-12 w-20 rounded-2xl border border-slate-200 bg-white text-center text-xl font-bold" />
                     <button onClick={() => setTotalSafe(total+1)} className="h-12 w-12 rounded-2xl border border-slate-200 bg-white text-xl" aria-label="증가">＋</button>
                   </div>
                 </div>
